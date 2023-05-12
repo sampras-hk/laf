@@ -298,6 +298,7 @@
     "Login": "登录",
     "LoginTip": "请输入手机号和验证码",
     "LoginWithGithub": "GitHub 登录",
+    "LoginWithGoogle": "Google 登录",
     "ValidationCodeTip": "请输入验证码",
     "ForgotPassword": "忘记密码？",
     "Register": "注册",

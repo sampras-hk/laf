@@ -113,6 +113,11 @@ declare namespace Definitions {
     password?: string /* password, 8-64 characters */;
   };
 
+  export type GoogleSigninDto = {
+    clientId?: string;
+    credential?: string;
+  };
+
   export type BindPhoneDto = {
     phone?: string /* phone number */;
     code?: string /* sms verify code */;
@@ -555,6 +560,22 @@ declare namespace Paths {
   }
 
   namespace PhoneControllerSignin {
+    export type QueryParameters = any;
+
+    export type BodyParameters = Definitions.PhoneSigninDto;
+
+    export type Responses = any;
+  }
+
+  namespace GoogleControllerSignin {
+    export type QueryParameters = any;
+
+    export type BodyParameters = Definitions.GoogleSigninDto;
+
+    export type Responses = any;
+  }
+
+  namespace ControllerSignin {
     export type QueryParameters = any;
 
     export type BodyParameters = Definitions.PhoneSigninDto;

@@ -20,6 +20,7 @@ export interface AuthProviderBinding {
   email: AuthBindingType
   github: AuthBindingType
   wechat: AuthBindingType
+  google: AuthBindingType
 }
 
 export interface AlismsConfig {

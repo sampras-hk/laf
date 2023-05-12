@@ -6,13 +6,14 @@ import { t } from "i18next";
 
 import { COLOR_MODE } from "@/constants";
 
+import LoginByGoogle from "./mods/LoginByGoogle";
 import LoginByPasswordPanel from "./mods/LoginByPasswordPanel";
 import LoginByPhonePanel from "./mods/LoginByPhonePanel";
 
 import { useGetProvidersQuery } from "@/pages/auth/service";
 import useAuthStore from "@/pages/auth/store";
 
-type providersTypes = "user-password" | "phone" | "github" | "wechat";
+type providersTypes = "user-password" | "phone" | "github" | "wechat" | "google";
 
 export default function SignIn() {
   const { colorMode } = useColorMode();
@@ -24,6 +25,7 @@ export default function SignIn() {
   const [phoneProvider, setPhoneProvider] = useState<any>(null);
   const [passwordProvider, setPasswordProvider] = useState<any>(null);
   const [githubProvider, setGithubProvider] = useState<any>(null);
+  const [googleProvider, setGoogleProvider] = useState<any>(null);
   const [wechatProvider, setWechatProvider] = useState<any>(null);
   const [currentProvider, setCurrentProvider] = useState<providersTypes>();
   useEffect(() => {
@@ -31,11 +33,14 @@ export default function SignIn() {
       const phoneProvider = providers.find((provider: any) => provider.name === "phone");
       const passwordProvider = providers.find((provider: any) => provider.name === "user-password");
       const githubProvider = providers.find((provider: any) => provider.name === "github");
+      const googleProvider = providers.find((provider: any) => provider.name === "google");
 
       setPhoneProvider(phoneProvider);
       setPasswordProvider(passwordProvider);
       setGithubProvider(githubProvider);
+      setGoogleProvider(googleProvider);
       setWechatProvider(wechatProvider);
+
       providers.forEach((provider: any) => {
         if (provider.default) {
           setCurrentProvider(provider.name);
@@ -54,8 +59,13 @@ export default function SignIn() {
         },
       )}
     >
-      <div className="mb-[45px]">
-        <img src="/logo_light.png" alt="logo" width={80} className="mr-4" />
+      <div
+        className={clsx("pb-[30px] text-[24px]", {
+          "text-primary-600": !darkMode,
+          "text-primary-400": darkMode,
+        })}
+      >
+        Welcome to Smart Campus
       </div>
 
       {currentProvider === "phone" ? (
@@ -71,7 +81,7 @@ export default function SignIn() {
         />
       ) : null}
 
-      {(githubProvider || wechatProvider) && (
+      {(googleProvider || githubProvider || wechatProvider) && (
         <div className="mt-20">
           <div className="relative mb-5 w-full text-center before:absolute before:top-1/2 before:block before:h-[1px] before:w-full before:bg-slate-300 before:content-['']">
             <span className="relative z-10 bg-white pl-5 pr-5">or</span>
@@ -81,6 +91,13 @@ export default function SignIn() {
               <AiFillGithub className="mr-4" />
               {t("AuthPanel.LoginWithGithub")}
             </Button>
+          )}
+
+          {googleProvider && (
+            <LoginByGoogle
+              showPasswordSigninBtn={!!passwordProvider}
+              switchLoginType={() => setCurrentProvider("google")}
+            />
           )}
         </div>
       )}

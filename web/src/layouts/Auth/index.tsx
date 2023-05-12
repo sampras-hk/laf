@@ -13,14 +13,16 @@ export default function LoginReg() {
     <div
       className={clsx(styles.container, { "bg-[#edf1f5]": !darkMode, "bg-lafDark-300": darkMode })}
     >
-      <div className="absolute left-[120px] top-[120px]">
+      {/* <div className="absolute left-[120px] top-[120px]">
         <div
           className={clsx("text-[36px]", {
             "text-primary-600": !darkMode,
             "text-primary-400": darkMode,
           })}
         >
-          Welcome to laf !
+          <div className="mb-[45px]">
+            <img src="/logo_light.png" alt="logo" width={178} className="mr-4" />
+          </div>
         </div>
         <div
           className={clsx("text-[20px]", {
@@ -28,9 +30,9 @@ export default function LoginReg() {
             "text-grayModern-300": darkMode,
           })}
         >
-          life is short, you need laf.
+          Welcome to Smart Campus
         </div>
-      </div>
+      </div> */}
       <Outlet />
     </div>
   );

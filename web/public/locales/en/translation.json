@@ -298,6 +298,7 @@
     "Login": "Login",
     "LoginTip": "Please input your phone number and verification code",
     "LoginWithGithub": "Login with GitHub",
+    "LoginWithGoogle": "Login with Google",
     "ValidationCodeTip": "Please input the verification code",
     "ForgotPassword": "Forgot Password?",
     "Register": "Register",

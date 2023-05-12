@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 
 import {
   AuthenticationControllerGetProviders,
+  GoogleControllerSignin,
   PhoneControllerSendCode,
   PhoneControllerSignin,
   UserPasswordControllerReset,
@@ -12,6 +13,7 @@ import {
 const queryKeys = {
   useSigninByPasswordMutation: ["useSigninByPasswordMutation"],
   useSigninBySmsCodeMutation: ["useSigninBySmsCodeMutation"],
+  useSigninByGoogleMutation: ["useSigninByGoogleMutation"],
   useSignupMutation: ["useSignupMutation"],
   useSendSmsCodeMutation: ["useSendSmsCodeMutation"],
   useResetPasswordMutation: ["useResetPasswordMutation"],
@@ -99,6 +101,22 @@ export const useGetProvidersQuery = (onSuccess: (result: any) => void) => {
     },
     {
       onSuccess,
+    },
+  );
+};
+
+export const useSigninByGoogleMutation = (config?: { onSuccess: (result: any) => void }) => {
+  return useMutation(
+    (values: any) => {
+      return GoogleControllerSignin(values);
+    },
+    {
+      onSuccess: async (result) => {
+        if (!result.error) {
+          localStorage.setItem("token", result?.data);
+          config?.onSuccess(result);
+        }
+      },
     },
   );
 };

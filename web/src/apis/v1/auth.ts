@@ -113,6 +113,23 @@ export async function PhoneControllerSignin(
 }
 
 /**
+ * Signin by phone and verify code
+ */
+export async function GoogleControllerSignin(
+  params: Definitions.GoogleSigninDto | any,
+): Promise<Paths.GoogleControllerSignin.Responses> {
+  // /v1/auth/google/signin
+  let _params: { [key: string]: any } = {
+    appid: useGlobalStore.getState().currentApp?.appid || "",
+    ...params,
+  };
+  return request(`/v1/auth/google/signin`, {
+    method: "POST",
+    data: params,
+  });
+}
+
+/**
  * Auth providers
  */
 export async function AuthenticationControllerGetProviders(

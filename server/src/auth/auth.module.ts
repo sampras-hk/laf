@@ -15,6 +15,8 @@ import { PhoneController } from './phone/phone.controller'
 import { PhoneService } from './phone/phone.service'
 import { AuthenticationController } from './authentication.controller'
 import { AuthenticationService } from './authentication.service'
+import { GoogleController } from './google/google.controller'
+import { GoogleService } from './google/google.service'
 
 @Global()
 @Module({
@@ -35,6 +37,7 @@ import { AuthenticationService } from './authentication.service'
     PhoneService,
     SmsService,
     AuthenticationService,
+    GoogleService,
   ],
   exports: [AuthService],
   controllers: [
@@ -42,6 +45,7 @@ import { AuthenticationService } from './authentication.service'
     UserPasswordController,
     PhoneController,
     AuthenticationController,
+    GoogleController,
   ],
 })
 export class AuthModule {}
